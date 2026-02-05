@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../babcia_state.dart';
 
 class EkranDodawaniaDania extends StatefulWidget {
@@ -28,9 +29,9 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
   @override
   Widget build(BuildContext kontekst) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E6),
+      backgroundColor: const Color(0xFFFAFAFA), // Soft white background
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange.shade600,
+        backgroundColor: Colors.pink.shade600, // Pink instead of orange
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -74,9 +75,12 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w800,
-            color: Colors.deepOrange.shade700,
+            color: Colors.pink.shade700, // Pink instead of orange
           ),
-        ),
+        )
+            .animate()
+            .fadeIn(duration: 400.ms)
+            .slideX(begin: -0.2, end: 0, duration: 400.ms),
         const SizedBox(height: 14),
         zawartosc,
       ],
@@ -134,7 +138,7 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
             ),
             value: typ,
             groupValue: _wybranyTyp,
-            activeColor: Colors.deepOrange.shade600,
+            activeColor: Colors.pink.shade600, // Pink instead of orange
             onChanged: (TypDania? nowyTyp) {
               if (nowyTyp != null) {
                 setState(() {
@@ -171,7 +175,7 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
         leading: Icon(
           Icons.access_time_rounded,
           size: 40,
-          color: Colors.deepOrange.shade600,
+          color: Colors.pink.shade600, // Pink instead of orange
         ),
         title: Text(
           _wybranyCzas.format(kontekst),
@@ -182,7 +186,7 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
         ),
         trailing: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.deepOrange.shade600,
+            backgroundColor: Colors.pink.shade600, // Pink instead of orange
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -243,7 +247,7 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange.shade600,
+                    backgroundColor: Colors.pink.shade600, // Pink instead of orange
                     padding: const EdgeInsets.all(18),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -270,7 +274,7 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
                     contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     leading: Icon(
                       Icons.restaurant_rounded,
-                      color: Colors.deepOrange.shade600,
+                      color: Colors.pink.shade600, // Pink instead of orange
                       size: 26,
                     ),
                     title: Text(
@@ -307,7 +311,7 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
   Widget _budujPrzyciskZapisu() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.deepOrange.shade600,
+        backgroundColor: Colors.pink.shade600, // Pink instead of orange
         padding: const EdgeInsets.symmetric(vertical: 22),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
@@ -321,7 +325,10 @@ class _StanEkranuDodawania extends State<EkranDodawaniaDania> {
           fontWeight: FontWeight.w800,
         ),
       ),
-    );
+    )
+        .animate()
+        .scale(duration: 300.ms, delay: 500.ms)
+        .shimmer(duration: 1500.ms, delay: 800.ms);
   }
 
   void _zapiszDanie() {

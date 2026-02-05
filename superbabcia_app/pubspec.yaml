@@ -23,6 +23,9 @@ dependencies:
   
   # Formatowanie dat
   intl: ^0.18.1
+  
+  # Animacje
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:
