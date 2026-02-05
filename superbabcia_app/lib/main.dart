@@ -32,7 +32,6 @@ class ApkaBabci extends StatelessWidget {
         primary: const Color(0xFFE91E63), // Pink
         secondary: const Color(0xFFF48FB1), // Light pink
         surface: Colors.white,
-        background: const Color(0xFFFAFAFA), // Soft white background
       ),
       scaffoldBackgroundColor: const Color(0xFFFAFAFA),
       cardTheme: CardTheme(

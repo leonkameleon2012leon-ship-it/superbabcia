@@ -65,9 +65,10 @@ class TablicaGlowna extends StatelessWidget {
             color: Colors.pink.shade300, // Pink instead of orange
           )
               .animate(onPlay: (controller) => controller.repeat(reverse: true))
-              .scale(duration: 2000.ms, begin: const Offset(1.0, 1.0), end: const Offset(1.1, 1.1))
-              .then()
-              .scale(duration: 2000.ms, begin: const Offset(1.1, 1.1), end: const Offset(1.0, 1.0)),
+              .scale(
+                  duration: 2000.ms,
+                  begin: const Offset(1.0, 1.0),
+                  end: const Offset(1.1, 1.1)),
           const SizedBox(height: 26),
           Text(
             'Brak zaplanowanych posiłków',
