@@ -23,11 +23,22 @@ class ApkaBabci extends StatelessWidget {
   }
 
   ThemeData _tworzMotyw() {
+    // Pinterest-style white and pink theme
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xFFFF8C00),
+        seedColor: const Color(0xFFE91E63), // Pink primary
         brightness: Brightness.light,
+        primary: const Color(0xFFE91E63), // Pink
+        secondary: const Color(0xFFF48FB1), // Light pink
+        surface: Colors.white,
+        background: const Color(0xFFFAFAFA), // Soft white background
+      ),
+      scaffoldBackgroundColor: const Color(0xFFFAFAFA),
+      cardTheme: CardTheme(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: Colors.white,
       ),
       textTheme: const TextTheme(
         headlineLarge: TextStyle(fontSize: 38, fontWeight: FontWeight.w700, letterSpacing: 0.5),

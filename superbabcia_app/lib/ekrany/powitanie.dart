@@ -55,7 +55,7 @@ class _StanEkranuPowitania extends State<EkranPowitania> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E6),
+      backgroundColor: const Color(0xFFFCE4EC), // Light pink background
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +123,7 @@ class _StanEkranuPowitania extends State<EkranPowitania> with TickerProviderStat
                     style: TextStyle(
                       fontSize: 42,
                       fontWeight: FontWeight.w800,
-                      color: Colors.deepOrange.shade700,
+                      color: Colors.pink.shade700, // Pink instead of orange
                       letterSpacing: 1.4,
                     ),
                   ),
@@ -132,7 +132,7 @@ class _StanEkranuPowitania extends State<EkranPowitania> with TickerProviderStat
                     'Miłego dnia w pracy!',
                     style: TextStyle(
                       fontSize: 26,
-                      color: Colors.orange.shade600,
+                      color: Colors.pink.shade400, // Pink instead of orange
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -206,9 +206,9 @@ class MalowanieTalerza extends CustomPainter {
     final farbaJedzenia = Paint()
       ..shader = RadialGradient(
         colors: [
-          Colors.orange.shade500,
-          Colors.orange.shade400,
-          Colors.orange.shade300,
+          Colors.pink.shade300, // Pink food color
+          Colors.pink.shade200,
+          Colors.pink.shade100,
         ],
         stops: const [0.0, 0.6, 1.0],
       ).createShader(Rect.fromCircle(center: srodek, radius: promienZewnetrzny * 0.5));

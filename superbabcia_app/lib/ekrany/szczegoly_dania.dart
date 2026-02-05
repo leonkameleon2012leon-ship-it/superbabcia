@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../babcia_state.dart';
 
 class EkranSzczegolow extends StatelessWidget {
@@ -13,9 +14,9 @@ class EkranSzczegolow extends StatelessWidget {
     final formatCzasu = DateFormat('HH:mm');
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E6),
+      backgroundColor: const Color(0xFFFAFAFA), // Soft white background
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange.shade600,
+        backgroundColor: Colors.pink.shade600, // Pink instead of orange
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -38,13 +39,25 @@ class EkranSzczegolow extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _budujKarteGlowna(formatCzasu),
+            _budujKarteGlowna(formatCzasu)
+                .animate()
+                .fadeIn(duration: 400.ms)
+                .slideY(begin: -0.2, end: 0, duration: 400.ms),
             const SizedBox(height: 26),
-            _budujNaglowekSekcji('Składniki:'),
+            _budujNaglowekSekcji('Składniki:')
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 100.ms)
+                .slideX(begin: -0.2, end: 0, duration: 400.ms, delay: 100.ms),
             const SizedBox(height: 14),
-            _budujListeSkladnikow(),
+            _budujListeSkladnikow()
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 200.ms)
+                .scale(begin: const Offset(0.95, 0.95), end: const Offset(1.0, 1.0), duration: 400.ms, delay: 200.ms),
             const SizedBox(height: 26),
-            _budujPrzelacznikPowiadomien(kontekst),
+            _budujPrzelacznikPowiadomien(kontekst)
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 300.ms)
+                .slideY(begin: 0.2, end: 0, duration: 400.ms, delay: 300.ms),
           ],
         ),
       ),
@@ -60,7 +73,7 @@ class EkranSzczegolow extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           gradient: LinearGradient(
-            colors: [Colors.orange.shade100, Colors.white],
+            colors: [Colors.pink.shade100, Colors.white], // Pink gradient instead of orange
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -84,7 +97,7 @@ class EkranSzczegolow extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w800,
-                          color: Colors.deepOrange.shade700,
+                          color: Colors.pink.shade700, // Pink instead of orange
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -107,8 +120,8 @@ class EkranSzczegolow extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.orange.shade300,
-                    Colors.orange.shade100,
+                    Colors.pink.shade300, // Pink gradient instead of orange
+                    Colors.pink.shade100,
                     Colors.transparent,
                   ],
                 ),
@@ -134,7 +147,7 @@ class EkranSzczegolow extends StatelessWidget {
       style: TextStyle(
         fontSize: 28,
         fontWeight: FontWeight.w800,
-        color: Colors.deepOrange.shade700,
+        color: Colors.pink.shade700, // Pink instead of orange
       ),
     );
   }
@@ -199,10 +212,10 @@ class EkranSzczegolow extends StatelessWidget {
         secondary: Icon(
           danie.przypominaj ? Icons.notifications_active_rounded : Icons.notifications_off_rounded,
           size: 40,
-          color: Colors.deepOrange.shade600,
+          color: Colors.pink.shade600, // Pink instead of orange
         ),
         value: danie.przypominaj,
-        activeColor: Colors.deepOrange.shade600,
+        activeColor: Colors.pink.shade600, // Pink instead of orange
         onChanged: (_) {
           final stan = kontekst.read<StanAplikacji>();
           stan.przelaczPrzypomnienie(danie.id);

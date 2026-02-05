@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../babcia_state.dart';
 import 'dodaj_danie.dart';
 import 'szczegoly_dania.dart';
@@ -11,9 +12,9 @@ class TablicaGlowna extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E6),
+      backgroundColor: const Color(0xFFFAFAFA), // Soft white background
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange.shade600,
+        backgroundColor: Colors.pink.shade600, // Pink instead of orange
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -39,7 +40,11 @@ class TablicaGlowna extends StatelessWidget {
             itemCount: dzisiejszeDania.length,
             separatorBuilder: (_, __) => const SizedBox(height: 18),
             itemBuilder: (kontekst, indeks) {
-              return KartaDania(danie: dzisiejszeDania[indeks]);
+              // Add staggered animations to meal cards
+              return KartaDania(danie: dzisiejszeDania[indeks])
+                  .animate()
+                  .fadeIn(duration: 400.ms, delay: (100 * indeks).ms)
+                  .slideX(begin: 0.2, end: 0, duration: 400.ms, delay: (100 * indeks).ms);
             },
           );
         },
@@ -57,8 +62,12 @@ class TablicaGlowna extends StatelessWidget {
           Icon(
             Icons.restaurant_menu_rounded,
             size: 110,
-            color: Colors.orange.shade300,
-          ),
+            color: Colors.pink.shade300, // Pink instead of orange
+          )
+              .animate(onPlay: (controller) => controller.repeat(reverse: true))
+              .scale(duration: 2000.ms, begin: const Offset(1.0, 1.0), end: const Offset(1.1, 1.1))
+              .then()
+              .scale(duration: 2000.ms, begin: const Offset(1.1, 1.1), end: const Offset(1.0, 1.0)),
           const SizedBox(height: 26),
           Text(
             'Brak zaplanowanych posiłków',
@@ -67,7 +76,9 @@ class TablicaGlowna extends StatelessWidget {
               color: Colors.grey.shade700,
               fontWeight: FontWeight.w600,
             ),
-          ),
+          )
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 200.ms),
           const SizedBox(height: 12),
           Text(
             'Dodaj swój pierwszy posiłek!',
@@ -75,7 +86,9 @@ class TablicaGlowna extends StatelessWidget {
               fontSize: 20,
               color: Colors.grey.shade500,
             ),
-          ),
+          )
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 400.ms),
         ],
       ),
     );
@@ -88,7 +101,7 @@ class TablicaGlowna extends StatelessWidget {
           MaterialPageRoute(builder: (_) => const EkranDodawaniaDania()),
         );
       },
-      backgroundColor: Colors.deepOrange.shade600,
+      backgroundColor: Colors.pink.shade600, // Pink instead of orange
       elevation: 6,
       icon: const Icon(Icons.add_circle_outline, size: 34),
       label: const Text(
@@ -98,7 +111,10 @@ class TablicaGlowna extends StatelessWidget {
           fontWeight: FontWeight.w800,
         ),
       ),
-    );
+    )
+        .animate()
+        .scale(duration: 300.ms, delay: 600.ms)
+        .shimmer(duration: 1500.ms, delay: 900.ms);
   }
 }
 
@@ -133,7 +149,7 @@ class KartaDania extends StatelessWidget {
             gradient: LinearGradient(
               colors: czyMinelo
                   ? [Colors.grey.shade300, Colors.grey.shade200]
-                  : [Colors.orange.shade50, Colors.white],
+                  : [Colors.pink.shade50, Colors.white], // Pink gradient instead of orange
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -173,7 +189,7 @@ class KartaDania extends StatelessWidget {
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w800,
-                color: czyMinelo ? Colors.grey.shade600 : Colors.deepOrange.shade700,
+                color: czyMinelo ? Colors.grey.shade600 : Colors.pink.shade700, // Pink instead of orange
               ),
             ),
           ],
@@ -181,7 +197,7 @@ class KartaDania extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
           decoration: BoxDecoration(
-            color: czyMinelo ? Colors.grey.shade500 : Colors.deepOrange.shade600,
+            color: czyMinelo ? Colors.grey.shade500 : Colors.pink.shade600, // Pink instead of orange
             borderRadius: BorderRadius.circular(22),
           ),
           child: Row(
@@ -237,7 +253,7 @@ class KartaDania extends StatelessWidget {
             Icon(
               danie.przypominaj ? Icons.notifications_active : Icons.notifications_off,
               size: 22,
-              color: danie.przypominaj ? Colors.deepOrange.shade600 : Colors.grey.shade400,
+              color: danie.przypominaj ? Colors.pink.shade600 : Colors.grey.shade400, // Pink instead of orange
             ),
             const SizedBox(width: 10),
             Text(
